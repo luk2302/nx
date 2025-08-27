@@ -268,6 +268,7 @@ async function runPublishOnProjects(
     nxJsonConfiguration: nxJson,
     argv: process.argv,
   });
+  const startTime = Date.now();
 
   /**
    * Run the relevant nx-release-publish executor on each of the selected projects.
@@ -290,6 +291,7 @@ async function runPublishOnProjects(
     {},
     extraOptions
   );
+  const endTime = Date.now();
 
   const publishProjectsResult: PublishProjectsResult = {};
   for (const taskData of Object.values(taskResults)) {
@@ -302,6 +304,8 @@ async function runPublishOnProjects(
     workspaceRoot,
     nxJsonConfiguration: nxJson,
     argv: process.argv,
+    startTime,
+    endTime,
   });
 
   return publishProjectsResult;
